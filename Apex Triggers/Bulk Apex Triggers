@@ -12,3 +12,10 @@ trigger ClosedOpportunityTrigger on Opportunity (after insert, after update) {
     }
 
 }
+
+
+-----------------------Execution Code-------------------------------
+
+Opportunity testOpportunity = [SELECT Id, Name, StageName FROM Opportunity WHERE StageName = 'Closed Won' LIMIT 1];
+testOpportunity.StageName = 'Closed Won'; // Trigger logic will only run on after insert and after update
+update testOpportunity;
