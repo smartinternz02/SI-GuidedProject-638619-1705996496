@@ -1,0 +1,32 @@
+-------------RandomContactFactory.apxc--------------
+
+public class RandomContactFactory {
+    public static List<Contact> generateRandomContacts(Integer NumberofContacts, String lName){
+        List<Contact> con = new List<Contact>();
+        for(Integer i=0; i<NumberofContacts; i++){
+            lName = 'Test'+i;
+            Contact c = new Contact(FirstName=lName, LastName=lName);
+            con.add(c);
+        }
+        return con;
+    }
+
+}
+
+
+--------------Execution Code-----------------
+
+// Specify the number of contacts and a common last name
+Integer numberOfContacts = 5;
+String lastName = 'Test';
+
+// Call the generateRandomContacts method
+List<Contact> randomContacts = RandomContactFactory.generateRandomContacts(numberOfContacts, lastName);
+
+// Insert the generated contacts
+insert randomContacts;
+
+// Print information about the created contacts
+for (Contact c : randomContacts) {
+    System.debug('Created Contact: ' + c.FirstName + ' ' + c.LastName);
+}
