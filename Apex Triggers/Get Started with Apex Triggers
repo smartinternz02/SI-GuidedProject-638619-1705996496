@@ -8,3 +8,10 @@ trigger AccountAddressTrigger on Account (before insert, before update) {
     }
 
 }
+
+
+-------------Execution Code-----------------------
+
+Account testAccount = [SELECT Id, Name, BillingPostalCode, ShippingPostalCode, Match_Billing_Address__c FROM Account WHERE BillingPostalCode != null LIMIT 1];
+testAccount.Match_Billing_Address__c = true;
+update testAccount;
