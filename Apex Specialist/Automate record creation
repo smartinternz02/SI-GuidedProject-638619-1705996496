@@ -72,3 +72,16 @@ trigger MaintenanceRequest on Case (before update, after update) {
     }
 
 }
+
+
+-----------------Execution code------------------------------
+
+// Query a Case record to update 
+Case myCase = [SELECT Id, Status, Type FROM Case WHERE Status = 'Closed' LIMIT 1];
+
+// Modify the Case record 
+myCase.Status = 'New';
+myCase.Type = 'Routine Maintenance';
+
+// Update the Case record
+update myCase;
